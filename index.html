@@ -1,10 +1,87 @@
 <!DOCTYPE html>
 <html>
 
-    <head>
-        <title>Greatest Portfolio of all Time</title>
-    </head>
-    <body>
-        <h1>Start</h1>
-    </body>
+<head>
+    <title>Greatest Portfolio of all Time</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div id="boot-screen" aria-hidden="true">
+        <div id="boot-lines"></div>
+    </div>
+    <div id="site" class="is-hidden"></div>
+
+    <!-- <header>
+        <nav>
+            <div>root@ahmed:~$</div>
+            <div class="nav-links">
+                <a href="#work">[WORK]</a>
+                <a href="#about">[ABOUT]</a>
+                <a href="#projects">[PROJECTS]</a>
+                <a href="#contact">[CONTACT]</a>
+            </div>
+        </nav>
+    </header> -->
+
+
+    <section class="hero">
+        <h1 class="typing main" data-text="HI, I'M AHMED.">
+            HI, I'M AHMED.
+        </h1>
+
+        <h2 class="typing" data-text="I BUILD THINGS.">
+            I BUILD STUFF.
+        </h2>
+        <h4 class="explanation">I teach machines to see, decide, and move fast — agents that reason, models that watch, and code that runs
+            in parallel because waiting is not a personality trait.</h4>
+
+    </section>
+
+    <section class="work" id="work">
+        <h3 class="typing" data-text="HI, I'M AHMED.">
+            WORK
+        </h3>
+        <p>01 AI researcher &amp; MLOPs engineer</p>
+        <h4>
+            3DIM
+        </h4>
+        <ul class="bullet-list">
+            <li>Deployed NVIDIA Triton Inference Server for tobacco plant segmentation, cutting inference latency 100x
+                through TensorRT quantization (INT8/FP16) and custom CUDA kernel optimization</li>
+            <li>Built a custom pruning pipeline with F2Zip that shrank model size 40% with zero accuracy loss</li>
+            <li>Optimized LeYOLO for small-object detection across 10,000+ drone images and containerized it for Jetson
+                edge deployment, cutting image size 60%</li>
+        </ul>
+
+        <p>02 AI engineer</p>
+        <h4>
+            WeCloudData
+        </h4>
+        <ul class="bullet-list">
+            <li>Deployed NVIDIA Triton Inference Server for tobacco plant segmentation, cutting inference latency 100x
+                through TensorRT quantization (INT8/FP16) and custom CUDA kernel optimization</li>
+            <li>Built a custom pruning pipeline with F2Zip that shrank model size 40% with zero accuracy loss</li>
+            <li>Optimized LeYOLO for small-object detection across 10,000+ drone images and containerized it for Jetson
+                edge deployment, cutting image size 60%</li>
+        </ul>
+
+
+    </section>
+
+    <section class="projects">
+        <h3 id="projects">Projects</h3>
+        <div class="buttons">
+            <button class="btn">all</button>
+            <button class="btn">agentic ai</button>
+            <button class="btn">reinforcement learning</button>
+            <button class="btn">computer vision</button>
+            <button class="btn">systems programming</button>
+            <button class="btn">creative coding</button>
+        </div>
+
+    </section>
+</body>
+
 </html>

@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ahmed Bhan — MLOps / ML &amp; Cloud Infrastructure Engineer</title>
+  <meta name="description" content="Portfolio of Ahmed Bhan, an MLOps and Cloud Infrastructure Engineer.">
+
+  <!-- One typeface, used for everything. It carries the "terminal" personality
+       so we don't need a second display font. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style1.css">
+</head>
+<body>
+
+  <!-- ============================================================
+       BOOT SCREEN
+       This is what plays instead of a blank page while the site
+       "starts up". It's removed from the accessibility tree once
+       it's done (see script.js) and skips instantly if the visitor
+       has "reduce motion" turned on.
+  ============================================================= -->
+  <div id="boot-screen" aria-hidden="true">
+    <div id="boot-lines"></div>
+  </div>
+
+  <!-- ============================================================
+       SITE (hidden until boot finishes)
+  ============================================================= -->
+  <div id="site" class="is-hidden">
+
+    <!-- ---------- NAV ---------- -->
+    <header class="topbar">
+      <div class="topbar-inner">
+        <span class="prompt">guest@ahmed-bhan:~$</span>
+        <nav class="nav" aria-label="Primary">
+          <a href="#about">about</a>
+          <a href="#experience">experience</a>
+          <a href="#projects">projects</a>
+          <a href="#skills">skills</a>
+          <a href="#contact">contact</a>
+        </nav>
+        <button id="nav-toggle" class="nav-toggle" aria-expanded="false" aria-controls="nav-mobile" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+      <nav id="nav-mobile" class="nav-mobile" aria-label="Primary mobile">
+        <a href="#about">about</a>
+        <a href="#experience">experience</a>
+        <a href="#projects">projects</a>
+        <a href="#skills">skills</a>
+        <a href="#contact">contact</a>
+      </nav>
+    </header>
+
+    <!-- ---------- HERO ---------- -->
+    <section class="hero" id="top">
+      <div class="hero-inner">
+        <p class="line muted">$ whoami</p>
+        <h1 class="hero-title">
+          <span id="typed-name"></span><span class="cursor" id="hero-cursor">&#9608;</span>
+        </h1>
+        <p class="hero-role">MLOps / ML &amp; Cloud Infrastructure Engineer</p>
+        <p class="hero-desc">
+          I build the infrastructure underneath machine learning &mdash; model
+          serving, GPU optimization, and the pipelines that get a model from a
+          notebook into production without falling over.
+        </p>
+        <div class="hero-actions">
+          <a class="btn" href="#projects">$ ./view_projects.sh</a>
+          <a class="btn btn-ghost" href="assets/resume.pdf" target="_blank" rel="noopener">$ cat resume.pdf</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- ABOUT ---------- -->
+    <section class="section" id="about">
+      <h2 class="section-title"><span class="comment">// about</span></h2>
+      <div class="about-grid">
+        <div class="about-copy">
+          <p>
+            I'm a Computer/Electrical Engineer (B.E., NUST, 2026) who ended up
+            living on the infrastructure side of machine learning &mdash; the
+            part where a model has to actually survive contact with real
+            traffic, real GPUs, and real deadlines.
+          </p>
+          <p>
+            Most recently I cut inference latency by 100x on a production
+            segmentation model using TensorRT and CUDA kernel optimization,
+            and I've shipped Kubernetes-based microservices with automated
+            CI/CD end to end. I'm comfortable moving between the ML layer
+            (PyTorch, quantization, RAG pipelines) and the systems layer
+            (Docker, Kubernetes, GPU kernels).
+          </p>
+        </div>
+        <div class="terminal-card">
+          <div class="terminal-card-bar">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            <span class="terminal-card-title">stats.sh</span>
+          </div>
+          <pre class="terminal-card-body"><code>$ ./stats.sh
+LOCATION      : Islamabad, PK
+FOCUS         : MLOps / GPU infra
+LATENCY_CUT   : 100x (TensorRT + CUDA)
+MODEL_SIZE    : -40% (custom pruning)
+CURRENTLY     : AI Engineer @ WeCloudData
+</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- EXPERIENCE ---------- -->
+    <section class="section" id="experience">
+      <h2 class="section-title"><span class="comment">// experience</span></h2>
+      <ol class="timeline">
+
+        <li class="timeline-item">
+          <div class="timeline-when">Jul 2026 — Present</div>
+          <div class="timeline-what">
+            <h3>AI Engineer <span class="at">@ WeCloudData</span></h3>
+            <p class="tags">AI/GPU Infrastructure &middot; Model Serving &middot; Technical Curriculum</p>
+            <ul>
+              <li>Built hands-on AI infrastructure labs covering FastAPI model-serving APIs, Docker multi-stage builds, and vLLM-based LLM inference serving.</li>
+              <li>Diagnosed real dependency and version-compatibility failures across a production-style serving stack (PyTorch, Transformers, vLLM, bitsandbytes).</li>
+              <li>Authored debugging exercises simulating real production failure modes: memory leaks, version drift, silent data truncation.</li>
+            </ul>
+          </div>
+        </li>
+
+        <li class="timeline-item">
+          <div class="timeline-when">Feb 2025 — Aug 2025</div>
+          <div class="timeline-what">
+            <h3>MLOps Engineer <span class="at">@ 3DIM Engineering Solutions</span></h3>
+            <p class="tags">Production ML Infrastructure &middot; GPU Optimization</p>
+            <ul>
+              <li>Deployed NVIDIA Triton Inference Server for tobacco plant segmentation; cut latency 100x with TensorRT quantization (INT8/FP16) and CUDA kernel optimization.</li>
+              <li>Built a custom pruning pipeline with F2Zip, shrinking model size 40% with no accuracy loss.</li>
+              <li>Optimized LeYOLO for small-object detection on 10,000+ drone images; cut container image size 60% for Jetson edge deployment.</li>
+            </ul>
+          </div>
+        </li>
+
+        <li class="timeline-item">
+          <div class="timeline-when">Sep 2024 — May 2026</div>
+          <div class="timeline-what">
+            <h3>ML &amp; LLM Lead <span class="at">— Baymax (Final Year Project)</span></h3>
+            <p class="tags">LangChain &middot; Multi-Modal AI &middot; Edge MLOps</p>
+            <ul>
+              <li>Built a multi-modal pipeline on NVIDIA Jetson Nano fusing vision, language, and sensor streams into real-time health summaries.</li>
+              <li>Deployed ActionNet and FaceNet with TensorRT + CUDA graph optimization on GPU-constrained hardware; added a contactless rPPG model for pulse extraction.</li>
+              <li>Built a RAG pipeline with ChromaDB for patient history, with a privacy-by-design approach.</li>
+            </ul>
+          </div>
+        </li>
+
+        <li class="timeline-item">
+          <div class="timeline-when">Jun 2025 — Dec 2025</div>
+          <div class="timeline-what">
+            <h3>Full-Stack &amp; DevOps Engineer <span class="at">— Luk-Up</span></h3>
+            <p class="tags">Kubernetes &middot; Microservices &middot; CI/CD</p>
+            <ul>
+              <li>Deployed a microservices architecture on Kubernetes (Node.js auth service, React/Three.js UI) with service-mesh communication.</li>
+              <li>Configured JWT auth with MongoDB + bcrypt; wrote Kubernetes manifests with namespace isolation across 3 environments.</li>
+              <li>Automated CI/CD with GitHub Actions for zero-downtime rolling updates.</li>
+            </ul>
+          </div>
+        </li>
+
+      </ol>
+    </section>
+
+    <!-- ---------- PROJECTS ---------- -->
+    <section class="section" id="projects">
+      <h2 class="section-title"><span class="comment">// projects</span></h2>
+      <div class="project-grid">
+
+        <article class="project-card">
+          <div class="terminal-card-bar">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            <span class="terminal-card-title">gpt2_from_scratch/</span>
+          </div>
+          <div class="project-body">
+            <p>A complete 124M-parameter GPT-2 implemented from scratch in PyTorch &mdash; multi-head attention, positional embeddings, layer norm, autoregressive decoding.</p>
+            <p class="tags">PyTorch &middot; Transformers</p>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="terminal-card-bar">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            <span class="terminal-card-title">sports_analytics_suite/</span>
+          </div>
+          <div class="project-body">
+            <p>Real-time football/tennis analytics using YOLOv8, ByteTrack, and Depth Anything V2 for 3D player tracking, with optical flow + Kalman filtering for temporal consistency.</p>
+            <p class="tags">YOLOv8 &middot; OpenCL &middot; ByteTrack</p>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="terminal-card-bar">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            <span class="terminal-card-title">project_core/</span>
+          </div>
+          <div class="project-body">
+            <p>A Large Action Model for OS and web tasks using LangChain and Playwright, with async Python tool execution cutting runtime roughly 3x.</p>
+            <p class="tags">LangChain &middot; Playwright &middot; Async</p>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="terminal-card-bar">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            <span class="terminal-card-title">rl_robotic_manipulation/</span>
+          </div>
+          <div class="project-body">
+            <p>PPO/SAC training scaled across vectorized PyBullet environments, with inverse kinematics for robotic pick-and-place tasks.</p>
+            <p class="tags">Reinforcement Learning &middot; PyBullet</p>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="terminal-card-bar">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            <span class="terminal-card-title">text_search_engine/</span>
+          </div>
+          <div class="project-body">
+            <p>A search engine over 120,000+ news articles with sub-50ms latency, using inverted indexes and custom TF/positional ranking.</p>
+            <p class="tags">Flask &middot; Multiprocessing</p>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="terminal-card-bar">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            <span class="terminal-card-title">systems_and_graphics/</span>
+          </div>
+          <div class="project-body">
+            <p>A POSIX shell in C (forking, pipes, signals), a multi-threaded ray tracer in C++, and an 8-bit breadboard computer with a custom Python assembler.</p>
+            <p class="tags">C &middot; C++ &middot; Digital Logic</p>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ---------- SKILLS ---------- -->
+    <section class="section" id="skills">
+      <h2 class="section-title"><span class="comment">// skills --grep</span></h2>
+      <div class="skills-grid">
+        <div class="skill-col">
+          <h3>ai / mlops</h3>
+          <ul>
+            <li>PyTorch &amp; TensorFlow</li>
+            <li>vLLM &amp; Triton Inference Server</li>
+            <li>TensorRT &amp; ONNX</li>
+            <li>Quantization &amp; Pruning</li>
+            <li>LangChain &amp; RAG</li>
+          </ul>
+        </div>
+        <div class="skill-col">
+          <h3>gpu / parallel</h3>
+          <ul>
+            <li>CUDA &amp; OpenCL</li>
+            <li>OpenMP &amp; MPI</li>
+            <li>Kernel optimization</li>
+            <li>Mixed-precision training</li>
+          </ul>
+        </div>
+        <div class="skill-col">
+          <h3>cloud / devops</h3>
+          <ul>
+            <li>AWS (EC2, EKS, Lambda, S3)</li>
+            <li>Kubernetes &amp; Docker</li>
+            <li>GitHub Actions / CI-CD</li>
+            <li>Linux &amp; Bash</li>
+          </ul>
+        </div>
+        <div class="skill-col">
+          <h3>software</h3>
+          <ul>
+            <li>Python, C / C++</li>
+            <li>JavaScript / TypeScript</li>
+            <li>React &amp; Next.js</li>
+            <li>Qdrant, ChromaDB, MongoDB</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- CONTACT ---------- -->
+    <section class="section" id="contact">
+      <h2 class="section-title"><span class="comment">// contact</span></h2>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <p>Open to MLOps, ML infrastructure, and backend engineering roles. The fastest way to reach me is email.</p>
+          <ul class="contact-list">
+            <li><span class="label">email</span><a href="mailto:ahmedbhan141@gmail.com">ahmedbhan141@gmail.com</a></li>
+            <li><span class="label">github</span><a href="https://github.com/AhmedTheMagnificent" target="_blank" rel="noopener">github.com/AhmedTheMagnificent</a></li>
+            <li><span class="label">linkedin</span><a href="https://linkedin.com/in/ahmed-bhan-83267b1b8" target="_blank" rel="noopener">linkedin.com/in/ahmed-bhan</a></li>
+            <li><span class="label">location</span><span>Islamabad, Pakistan</span></li>
+          </ul>
+        </div>
+
+        <form class="contact-form" id="contact-form">
+          <div class="terminal-card-bar">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            <span class="terminal-card-title">send_message.sh</span>
+          </div>
+          <div class="contact-form-body">
+            <label for="name">$ set name =</label>
+            <input id="name" name="name" type="text" required autocomplete="name">
+
+            <label for="email">$ set reply_to =</label>
+            <input id="email" name="email" type="email" required autocomplete="email">
+
+            <label for="message">$ set message =</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+
+            <button type="submit" class="btn btn-block">$ ./send.sh</button>
+            <p class="form-status" id="form-status" role="status"></p>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>&copy; <span id="year"></span> Ahmed Bhan &mdash; built from scratch, no framework.</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

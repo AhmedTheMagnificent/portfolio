@@ -1,0 +1,488 @@
+/* ==========================================================================
+   TOKENS
+   Everything visual in this file traces back to these variables.
+   Change a value here and it ripples through the whole site — that's the
+   point of naming your colors instead of pasting hex codes everywhere.
+   ========================================================================== */
+:root {
+  --bg:          #0a0f0c;   /* page background — near-black, faint green tint */
+  --bg-raised:   #0f1613;   /* cards, terminal windows */
+  --border:      #1e2b24;
+  --fg:          #d9ecdf;   /* body text — soft, not pure white */
+  --fg-dim:      #7d9186;   /* secondary / muted text */
+  --accent:      #4fe08a;   /* phosphor green — links, headings, cursor */
+  --accent-soft: #2c6b48;
+  --danger:      #e0724f;
+
+  --mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+
+  --maxw: 880px;
+  --radius: 3px;
+}
+
+/* ==========================================================================
+   RESET / BASE
+   ========================================================================== */
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--mono);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* A very faint scanline texture. Subtle on purpose — it's a wink at CRT
+   terminals, not a costume. Remove this block if it feels like too much. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.012) 0px,
+    rgba(255, 255, 255, 0.012) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+
+h1, h2, h3 { margin: 0; font-weight: 600; }
+p { margin: 0 0 1em; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+ul { margin: 0; padding: 0; list-style: none; }
+
+/* Visible keyboard focus everywhere — don't remove this for aesthetics. */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.is-hidden { display: none !important; }
+
+/* ==========================================================================
+   BOOT SCREEN
+   ========================================================================== */
+#boot-screen {
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  color: var(--accent);
+  font-family: var(--mono);
+  padding: 8vh 6vw;
+  z-index: 100;
+  cursor: pointer;
+}
+
+#boot-lines {
+  max-width: 640px;
+  white-space: pre-wrap;
+  font-size: 14px;
+}
+
+#boot-lines .boot-line {
+  min-height: 1.6em;
+}
+
+#boot-screen.is-done {
+  animation: boot-fade 0.4s ease forwards;
+}
+
+@keyframes boot-fade {
+  to { opacity: 0; visibility: hidden; }
+}
+
+/* ==========================================================================
+   LAYOUT SHELL
+   ========================================================================== */
+.section, .topbar-inner, .hero-inner, .footer {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.section { padding-top: 88px; padding-bottom: 8px; scroll-margin-top: 72px; }
+
+.section-title {
+  font-size: 15px;
+  letter-spacing: 0.02em;
+  margin-bottom: 28px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+.comment { color: var(--fg-dim); }
+.comment::before { content: ""; }
+
+/* ==========================================================================
+   TOPBAR / NAV
+   ========================================================================== */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(10, 15, 12, 0.85);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--border);
+}
+
+.topbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+}
+
+.prompt { color: var(--fg-dim); font-size: 14px; }
+
+.nav { display: flex; gap: 24px; }
+.nav a { color: var(--fg); font-size: 14px; }
+.nav a::before { content: "/"; color: var(--fg-dim); margin-right: 2px; }
+.nav a:hover { color: var(--accent); text-decoration: none; }
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+}
+.nav-toggle span { width: 20px; height: 2px; background: var(--fg); }
+
+.nav-mobile {
+  display: none;
+  flex-direction: column;
+  padding: 8px 24px 16px;
+  border-top: 1px solid var(--border);
+}
+.nav-mobile a { color: var(--fg); padding: 10px 0; font-size: 14px; }
+
+/* ==========================================================================
+   HERO
+   ========================================================================== */
+.hero { padding-top: 18vh; padding-bottom: 14vh; }
+
+.line { font-size: 14px; margin-bottom: 6px; }
+.muted { color: var(--fg-dim); }
+
+.hero-title {
+  font-size: clamp(32px, 6vw, 56px);
+  line-height: 1.15;
+  color: var(--accent);
+  margin: 4px 0 14px;
+}
+
+.cursor {
+  display: inline-block;
+  color: var(--accent);
+  animation: blink 1s steps(1) infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
+
+.hero-role {
+  font-size: clamp(16px, 2.2vw, 19px);
+  color: var(--fg);
+  margin-bottom: 18px;
+}
+
+.hero-desc {
+  max-width: 60ch;
+  color: var(--fg-dim);
+  margin-bottom: 32px;
+}
+
+.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+
+.btn {
+  display: inline-block;
+  padding: 12px 18px;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 14px;
+  border-radius: var(--radius);
+  background: transparent;
+  cursor: pointer;
+}
+.btn:hover { background: var(--accent); color: #06120b; text-decoration: none; }
+
+.btn-ghost { border-color: var(--border); color: var(--fg); }
+.btn-ghost:hover { background: var(--bg-raised); color: var(--accent); border-color: var(--accent); }
+
+.btn-block { width: 100%; text-align: center; }
+
+/* ==========================================================================
+   TERMINAL CARD (reused for the about stats panel and project cards)
+   ========================================================================== */
+.terminal-card, .project-card, .contact-form {
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.terminal-card-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.dot {
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: var(--border);
+}
+
+.terminal-card-title {
+  margin-left: 8px;
+  font-size: 12px;
+  color: var(--fg-dim);
+}
+
+.terminal-card-body {
+  margin: 0;
+  padding: 18px;
+  font-size: 13.5px;
+  color: var(--fg);
+  overflow-x: auto;
+}
+
+/* ==========================================================================
+   ABOUT
+   ========================================================================== */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+@media (max-width: 720px) {
+  .about-grid { grid-template-columns: 1fr; }
+}
+
+/* ==========================================================================
+   EXPERIENCE / TIMELINE
+   ========================================================================== */
+.timeline {
+  border-left: 1px solid var(--border);
+  padding-left: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.timeline-item { position: relative; }
+
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -33px;
+  top: 6px;
+  width: 9px;
+  height: 9px;
+  background: var(--accent);
+  border-radius: 50%;
+}
+
+.timeline-when {
+  font-size: 12.5px;
+  color: var(--fg-dim);
+  margin-bottom: 6px;
+}
+
+.timeline-what h3 {
+  font-size: 17px;
+  color: var(--fg);
+  margin-bottom: 4px;
+}
+
+.timeline-what .at { color: var(--fg-dim); font-weight: 400; }
+
+.tags {
+  font-size: 12.5px;
+  color: var(--accent-soft);
+  margin-bottom: 10px;
+}
+
+.timeline-what ul { display: flex; flex-direction: column; gap: 6px; }
+.timeline-what li,
+.work li,
+.projects li {
+  font-size: 14.5px;
+  color: var(--fg-dim);
+  padding-left: 16px;
+  position: relative;
+}
+.timeline-what li::before,
+.work li::before,
+.projects li::before {
+  content: ">";
+  position: absolute;
+  left: 0;
+  color: var(--accent-soft);
+}
+
+/* ==========================================================================
+   PROJECTS
+   ========================================================================== */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 640px) {
+  .project-grid { grid-template-columns: 1fr; }
+}
+
+.project-body { padding: 16px 18px 18px; }
+.project-body p:first-child { font-size: 14.5px; color: var(--fg-dim); }
+.project-body .tags { margin-bottom: 0; }
+
+/* ==========================================================================
+   SKILLS
+   ========================================================================== */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+  padding-bottom: 12px;
+}
+
+@media (max-width: 720px) {
+  .skills-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+.skill-col h3 {
+  font-size: 13px;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+
+.skill-col li {
+  font-size: 14px;
+  color: var(--fg-dim);
+  padding: 5px 0;
+  border-bottom: 1px dashed var(--border);
+}
+
+/* ==========================================================================
+   CONTACT
+   ========================================================================== */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 40px;
+  padding-bottom: 40px;
+}
+
+@media (max-width: 720px) {
+  .contact-grid { grid-template-columns: 1fr; }
+}
+
+.contact-list { display: flex; flex-direction: column; gap: 12px; margin-top: 18px; }
+.contact-list .label {
+  display: inline-block;
+  width: 84px;
+  color: var(--fg-dim);
+}
+
+.contact-form-body {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.contact-form-body label {
+  font-size: 13px;
+  color: var(--fg-dim);
+  margin-top: 12px;
+}
+
+.contact-form-body input,
+.contact-form-body textarea {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--fg);
+  font-family: var(--mono);
+  font-size: 14px;
+  padding: 10px 12px;
+  margin-top: 4px;
+  resize: vertical;
+}
+
+.contact-form-body input:focus,
+.contact-form-body textarea:focus {
+  border-color: var(--accent);
+}
+
+.contact-form-body .btn { margin-top: 16px; }
+
+.form-status {
+  margin: 10px 0 0;
+  font-size: 13px;
+  color: var(--accent);
+  min-height: 1.2em;
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+.footer {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  font-size: 13px;
+  color: var(--fg-dim);
+  border-top: 1px solid var(--border);
+  margin-top: 40px;
+}
+
+/* ==========================================================================
+   REVEAL-ON-SCROLL
+   One quiet, consistent motion pattern, not a different effect per section.
+   ========================================================================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   RESPONSIVE NAV
+   ========================================================================== */
+@media (max-width: 700px) {
+  .nav { display: none; }
+  .nav-toggle { display: flex; }
+  .nav-mobile.is-open { display: flex; }
+}
+
+/* ==========================================================================
+   REDUCED MOTION
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .cursor { animation: none; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
